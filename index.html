@@ -5,7 +5,9 @@
         
     </head>
     <body>
-        <div class="catArray"></div><br />
+        <div data-bind="foreach: {data: model, as:'gato'}">
+            <button data-bind="text:gato.apelido,click: $parent.carregaGato"></button>
+        </div><br />
         <button class='btnAdmin' >Admin</button>
         <div class="areaEdicao" style="display: none;">
             <span>Título <input class="titulo" type="text" value=""/></span><br />
@@ -14,12 +16,13 @@
             <button class="btnSalvar">Salvar</button>
             <button class="btnCancelar">Cancelar</button>
         </div>
-        <div class="catDisplay">
-            <h2 class="titulo"></h2>
-            <img class="imagem" src="" alt="Imagem do gato" />
-            <span class="cliques"></span>
+        <div class="catDisplay" data-bind="with: gatoSelecionado">
+            <h1 data-bind="text: nome"></h1>
+            <h2 data-bind="text: titulo"></h2>
+            <img data-bind="attr: {src:src}, click: $parent.gatoClick" alt="Imagem do gato" />
+            <p data-bind="text: clicks"></p>
         </div>
     </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://knockoutjs.com/downloads/knockout-3.4.2.js"></script>
     <script src="./js/app.js"></script>
 </html>
